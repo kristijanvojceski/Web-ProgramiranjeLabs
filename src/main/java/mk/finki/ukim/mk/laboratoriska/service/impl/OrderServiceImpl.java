@@ -22,7 +22,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> getOrder() {
+    public List<Order> getOrders() {
         return balloonRepository.getOrders();
     }
 }
