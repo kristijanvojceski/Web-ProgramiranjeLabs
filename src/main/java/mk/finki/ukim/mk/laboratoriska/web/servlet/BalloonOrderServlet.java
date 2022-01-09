@@ -1,5 +1,6 @@
 package mk.finki.ukim.mk.laboratoriska.web.servlet;
 
+import mk.finki.ukim.mk.laboratoriska.model.User;
 import mk.finki.ukim.mk.laboratoriska.service.BalloonService;
 import mk.finki.ukim.mk.laboratoriska.service.OrderService;
 import org.thymeleaf.context.WebContext;
@@ -39,7 +40,7 @@ public class BalloonOrderServlet extends HttpServlet {
         req.getSession().setAttribute("clientAddress",clientAddress);
         String color= (String) req.getSession().getAttribute("chosenColor");
         String size = (String) req.getSession().getAttribute("chosenSize");
-        orderService.placeOrder(color,size,clientName,clientAddress);
+        orderService.placeOrder(color,size, (User) req.getSession().getAttribute("user"));
         resp.sendRedirect("/ConfirmationInfo");
     }
 }

@@ -2,19 +2,28 @@ package mk.finki.ukim.mk.laboratoriska.model;
 
 import lombok.Data;
 
+import javax.persistence.*;
+
 @Data
+@Entity
+@Table(name = "eshop_order")
 public class Order {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long orderId;
     private String balloonColor;
     private String balloonSize;
-    private String clientName;
-    private String clientAddress;
-    private Long orderId;
+    @ManyToOne
+    private User user;
 
-    public Order(String balloonColor, String balloonSize, String clientName, String clientAddress) {
+    public Order(String balloonColor, String balloonSize,User user) {
         this.balloonColor = balloonColor;
         this.balloonSize = balloonSize;
-        this.clientName = clientName;
-        this.clientAddress = clientAddress;
+        this.user = user;
+    }
+
+    public Order() {
+
     }
 }
